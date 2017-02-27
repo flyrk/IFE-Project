@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>IFE JavaScript Task 01</title>
+    </head>
+    <body>
+        <label for="aqi-input">请描述你今天的心情: <input id="aqi-input" type="text" required></label>
+        <button id="commit">确认填写</button>
+        <div>您今天的心情是：<span id="aqi-display">暂无心情</span></div>
+        <script type="text/javascript">
+            (function () {
+                /*
+                 * 在注释下方写下代码
+                 * 给按钮button绑定一个点击事件
+                 * 在事件处理函数中
+                 * 获取aqi-input输入的值，并显示在aqi-display中
+                 */
+                 function showValue() {
+                     var aqi_input = document.getElementById('aqi-input');
+                     var aqi_display = document.getElementById('aqi-display');
+                     aqi_display.innerText = aqi_input.value;
+                 }
+                 var commit = document.getElementById('commit');
+                 commit.onclick = showValue;
+            })();
+        </script>
+    </body>
+</html>
