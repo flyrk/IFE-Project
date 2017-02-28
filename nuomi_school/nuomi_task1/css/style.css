@@ -1,0 +1,79 @@
+* {
+    box-sizing: border-box;
+}
+.content {
+    display: flex;
+    justify-content: space-around;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    display: none;
+}
+
+.check-box {
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+.checkbox + label,
+.radio + label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #373641;
+    font-weight: 800;
+}
+.checkbox:checked + label::after,
+.radio:checked + label::after {
+    display: inline-block;
+    margin: auto;
+    font-size: 20px;
+    width: 10px;
+    height: 10px;
+    line-height: 10px;
+    content: "\2714";
+    color: #e83607;
+}
+.checkbox:checked + label,
+.radio:checked + label {
+    position: relative;
+    border: 1px solid #e83607;
+}
+.radio + label {
+    border-radius: 50%;
+}
+.radio:checked + label::after {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    content: "  ";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #e83607;
+}
+
+/******Spirit********/
+#check-box-s + label,
+#radios-left-s + label,
+#radios-right-s + label {
+    background: url(../img/background.png) no-repeat;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    font-weight: 800;
+}
+#check-box-s + label {
+    background-position: -23px -30px;
+}
+#radios-left-s + label,
+#radios-right-s + label {
+    background-position: -23px -10px;
+}
+#check-box-s:checked + label {
+    background-position: -58px -30px;
+}
+#radios-left-s:checked + label,
+#radios-right-s:checked + label {
+    background-position: -58px -10px;
+}
