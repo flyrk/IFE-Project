@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+form {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+}
+form legend {
+    font-size: 40px;
+    font-weight: 500;
+}
+fieldset {
+    display: block;
+    width: 50%;
+    text-align: center;
+}
+label,
+label > input {
+    font-size: 30px;
+    font-family: monospace;
+}
+.submit {
+    display: block;
+    position: absolute;
+    margin: auto;
+    bottom: 0;
+    right: 20%;
+    width: 60px;
+    height: 30px;
+    text-align: center;
+    text-shadow: 2px 2px #6c7568;
+    font-family: sans-serif;
+    background-color: #355ede;
+    color: #dce6d2;
+    border-radius: 5px;
+    font-size: 20px;
+    line-height: 30px;
+}
