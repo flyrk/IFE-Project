@@ -16,10 +16,14 @@ fieldset {
     width: 50%;
     text-align: center;
 }
+p {
+    font-size: 16px;
+    margin: 5px;
+}
 label,
 label > input {
-    font-size: 30px;
-    font-family: monospace;
+    font-size: 24px;
+    font-family: Helvetica;
 }
 .submit {
     display: block;
