@@ -1,0 +1,32 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+#stage {
+    position: relative;
+    border: 1px solid black#1e2224;
+    width: 500px;
+    height: 500px;
+    background-color: #2fd614;
+    color: #2a2524;
+    font-size: 1.6em;
+    text-align: center;
+}
+#mymenu {
+    position: absolute;
+    display: none;
+    background-color: #e3d2d6;
+    width: 200px;
+    height: 120px;
+    font-family: Arial;
+    font-size: .8em;
+    font-weight: 200;
+}
+#mymenu label {
+    display: block;
+}
+#mymenu label:hover {
+    background-color: #1cb4be;
+    color: #e9f0d4;
+    cursor: pointer;
+}
