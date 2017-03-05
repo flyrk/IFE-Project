@@ -1,0 +1,110 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+.container {
+    width: 600px;
+    height: 337px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.container:hover .show {
+    visibility: visible;
+}
+/*伪元素实现背景模糊且不干扰文字*/
+.container:hover::before {
+    -webkit-filter: blur(5px);
+}
+.container::before {
+    content: "";
+    background-image: url(../src/assassins-creed.jpg);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: filter .5s linear;
+}
+.show {
+    padding: 10px;
+    width: 70%;
+    height: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    visibility: hidden;
+}
+/*使用伪元素方法实现边框扩展效果*/
+.show::before,
+.show::after {
+    box-sizing: border-box;
+    content: "";
+    position: absolute;
+}
+.show::before {
+    width: 100%;
+    height: 0;
+    top: 50%;
+    left: 0;
+    border-left: 2px solid #fff;
+    border-right: 2px solid #fff;
+    transition: height .6s linear, top .6s linear;
+}
+.container:hover .show::before {
+    height: 100%;
+    top: 0;
+}
+.show::after {
+    width: 0;
+    height: 100%;
+    top: 0;
+    left: 50%;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transition: width .6s linear, left .6s linear;
+}
+.container:hover .show::after {
+    width: 100%;
+    left: 0;
+}
+/*文字流光渐变效果*/
+h1,
+a {
+    font-size: 1.4em;
+    font-family: arial;
+    text-transform: uppercase;
+    background-image: -webkit-linear-gradient(left, #1ec0e4, #e84e1d 25%, #1ec0e4 50%, #e84e1d 75%, #1ec0e4 100%);
+    -webkit-background-clip: text;
+    color: transparent;
+    background-size: 200% 100%;
+    opacity: 0;
+    top: 15px;
+    animation: streamer 3s infinite linear;
+    transition: opacity .5s linear, top .5s linear;
+}
+a {
+    font-size: 1.2em;
+    background-image: -webkit-linear-gradient(left, #e41e77, #7ce81d 25%, #e41e77 50%, #7ce81d 75%, #e41e77 100%);
+}
+@keyframes streamer {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
+}
+.container:hover h1,
+.container:hover a {
+    top: 0;
+    opacity: 1;
+}
