@@ -3,32 +3,17 @@
     <head>
         <meta charset="utf-8">
         <title>自定义菜单</title>
-        <style media="screen">
-            div {
-                border: 1px solid black;
-                width: 100%;
-                background-color: #d6d418;
-                color: #c12716;
-                font-size: 1.6em;
-            }
-        </style>
+        <link rel="stylesheet" href="./css/style.css" media="screen">
+        <script src="./src/main.js"></script>
     </head>
     <body>
-        <div contextmenu="mymenu">
+        <div id="stage">
             点击右键可见菜单
+            <div type="context" id="mymenu">
+                <label>查阅信息</label>
+                <label>分享</label>
+                <label>删除信息</label>
+            </div>
         </div>
-        <menu type="context" id="mymenu">
-            <menuitem label="查阅信息" onclick="showMenu(this);"></menuitem>
-            <menu label="分享">
-                <menuitem label="微博" onclick="showMenu(this);"></menuitem>
-                <menuitem label="贴吧" onclick="showMenu(this);"></menuitem>
-            </menu>
-            <menuitem label="删除信息" onclick="showMenu(this);"></menuitem>
-        </menu>
     </body>
-    <script type="text/javascript">
-        function showMenu(item) {
-            alert(item.getAttribute('label'));
-        }
-    </script>
 </html>
