@@ -3,19 +3,20 @@ window.onload = function () {
     var menu = document.getElementById('mymenu');
     document.body.addEventListener('click', function () {
         menu.style.display = "none";
-        menu.style.top = "auto";
-        menu.style.right = "auto";
-        menu.style.bottom = "auto";
-        menu.style.left = "auto";
     });
     stage.addEventListener('contextmenu', function (event) {
         event = event || window.event;
         event.preventDefault();
-        var stageCoords = {
+        var stageCoords = {         // 转化鼠标坐标
             x: event.clientX - stage.offsetLeft,
             y: event.clientY - stage.offsetTop
         };
-        console.log(stageCoords.x + ", " + stageCoords.y);
+        // 消除上一次右击残留的位置属性
+        menu.style.top = "auto";
+        menu.style.right = "auto";
+        menu.style.bottom = "auto";
+        menu.style.left = "auto";
+        // 显示菜单
         menu.style.display = "block";
         // 默认菜单在指针右下方
         if ( stage.offsetWidth - stageCoords.x > menu.offsetWidth &&
