@@ -9,7 +9,7 @@ Event.prototype.on = function( attr, callback ) {       // 注册绑定事件
         this.event[attr] = [callback];
     }
 };
-Event.prototype.off  = function( attr ) {       // 接触绑定事件
+Event.prototype.off  = function( attr ) {       // 解除绑定事件
     for (let key in this.event) {
         if( this.event.hasOwnProperty( key ) && key === attr ) {
             delete this.event[key];
