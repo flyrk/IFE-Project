@@ -1,19 +1,19 @@
 function Observer( data ) {
     this.data = data;
-    this.walk( data );
+    this.run( data );
 }
-Observer.prototype.walk = function( obj ) {
+Observer.prototype.run = function( obj ) {
     for(var key in obj) {
         if(obj.hasOwnProperty(key)) {       // 提取obj除原型链外的属性
             var val = obj[key];
             if(typeof val === "object") {       // 如果属性也是对象，则new Observer(val)
                 new Observer( val );
             }
-            this.convert( key, val );
+            this.setAndGet( key, val );
         }
     }
 };
-Observer.prototype.convert = function(key, val) {
+Observer.prototype.setAndGet = function(key, val) {
     Object.defineProperty( this.data, key, {
         enumerable: true,
         configurable: true,
