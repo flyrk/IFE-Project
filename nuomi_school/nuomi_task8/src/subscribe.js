@@ -1,99 +1,64 @@
-function DefineEvent(element) {
-   this.init(element);
+// 开始定义事件
+function Event() {
+    this.event = {};
 }
-DefineEvent.prototype = {
-    constructor: DefineEvent,
-    init: function(element) {
-    this.element = (element && element.nodeType == 1) ? element : document;
-    return this;
-    },
-    /*
-     * 添加监听事件     * @param {string} type 监听的事件类型
-     * @param {Function} callback 回调函数
-     */
-    addEvent: function(type,callback) {
-        var self = this;
-        if(self.element.addEventListener) { // 标准浏览器下
-          self.element.addEventListener(type,callback,false);
-         }else if(self.element.attachEvent){ // IE
-          if(isNaN(self.element[type])) {
-             self.element[type] = 0;
-           }
-           var fun = function(evt){
-             evt = evt ? evt : window.event;
-             if(evt.propertyName == type) {
-                callback.call(self.element);
-             }
-            }
-            self.element.attachEvent('onpropertychange',fun);
-            // 在元素上存储绑定回调，方便移除事件绑定
-           if(!self.element['callback' + callback]) {
-              self.element['callback' + callback] = fun;
-
-             }
-        }else {
-            self.element.attachEvent('on' + type,callback);
-        }
-        return self;
-    },
-
-    /*
-     * 移除事件
-     * @param {string} type 监听的事件类型
-     * @param {Function} callback 回调函数
-     */
-    removeEvent: function(type,callback){
-         var self = this;
-         if(self.element.removeEventListener) {
-            self.element.removeEventListener(type,callback,false);
-        }else if(self.element.detachEvent) {
-            // 移除对应的自定义属性监听
-            self.element.detachEvent('onpropertychange',self.element['callback' + callback]);
-            // 删除储存在 DOM 上的自定义事件的回调
-            self.element['callback' + callback] = null;
-
-        }else {
-            self.element.detachEvent('on' + type,callback);
-        }
-        return self;
-    },
-
-    /*
-
-     * 触发事件
-
-     * @param {String} type 触发事件的类型
-
-     * @return {object} 返回的对象
-
-     */
-
-    triggerEvent: function(type){
-
-        var self = this;
-
-        if(self.element.dispatchEvent) {  // 标准浏览器下
-
-            // 创建事件
-
-            var evt = document.createEvent('Event');
-
-            // 定义事件的类型
-
-            evt.initEvent(type,true,true);
-
-            // 触发事件
-
-            self.element.dispatchEvent(evt);
-
-        }else if(self.element.fireEvent) {  // IE
-
-            self.element[type]++;
-
-        }
-
-        return self;
-
+Event.prototype.on = function( attr, callback ) {       // 注册绑定事件
+    if(this.event[attr]) {
+        this.event[attr].push(callback);
+    } else {
+        this.event[attr] = [callback];
     }
-
 };
+Event.prototype.off  = function( attr ) {       // 接触绑定事件
+    for (let key in this.event) {
+        if( this.event.hasOwnProperty( key ) && key === attr ) {
+            delete this.event[key];
+        }
+    }
+};
+Event.prototype.emit = function(attr, ...arg) {         // 触发绑定事件
+    this.event[attr] && this.event[attr].forEach(function(item) {
+        item(...arg);
+    });
+};
+// 结束定义事件
+// 开始定义观察者模式
+function Observer( data ) {
+    this.data = data;
+    this.run( data );
+    this.eventStack = new Event();      // 储存绑定事件
+}
+Observer.prototype.run = function( obj ) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key)) {       // 提取obj除原型链外的属性
+            var val = obj[key];
+            if(typeof val === "object") {       // 如果属性也是对象，则new Observer(val)
+                new Observer( val );
+            }
+            this.setAndGet( key, val );
+        }
+    }
+};
+Observer.prototype.setAndGet = function(key, val) {
+    let self = this;
+    Object.defineProperty( this.data, key, {
+        enumerable: true,
+        configurable: true,
+        get: function() {       // 访问对象key时
+            console.log( "你访问了 " + key );
+            return val;
+        },
+        set: function(newVal) {     // 改变对象key时
+            if(typeof newVal === "object") {
+                new Observer(newVal);
+            }
+            console.log("你设置了 " + key + ", 新的值为 " + newVal );
+            self.eventStack.emit(key, newVal);
+            val = newVal;
+        }
+    });
+};
+Observer.prototype.$watch = function(attr, callback) {
+    this.eventStack.on(attr, callback);
+};
+// 结束定义观察者模式
