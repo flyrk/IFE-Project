@@ -22,6 +22,9 @@ Observer.prototype.convert = function(key, val) {
             return val;
         },
         set: function(newVal) {     // 改变对象key时
+            if(typeof newVal === "object") {
+                new Observer(newVal);
+            }
             console.log("你设置了 " + key + ", 新的值为 " + newVal );
             val = newVal;
         }
