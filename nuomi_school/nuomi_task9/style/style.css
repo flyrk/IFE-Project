@@ -26,10 +26,10 @@ input[type="radio"] {
 
 .labels {
     display: block;
-    background-color: #2185d6;
     height: 30px;
+    background-color: #a9acab;
     line-height: 30px;
-    color: #f7f7f7;
+    font-weight: 200;
     font-family: monospace;
     font-size: 1.2em;
 }
