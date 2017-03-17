@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #3686e3;
+    border-radius: 5px;
+}
+label {
+    display: block;
+}
+.student-info,
+.work-info {
+    display: none;
+    width: 50%;
+    font-size: 1.6em;
+    font-family: arial;
+    text-align: center;
+}
+.work-info input {
+    font-size: 1.6em;
+}
+p {
+    display: inline;
+}
+#student:checked {
+    border: 3px solid #2497e9;
+    color: #f4f0ec;
+    font-size: 1.6em;
+}

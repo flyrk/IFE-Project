@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>自定义表单（三）</title>
+        <link rel="stylesheet" href="./css/style.css">
+        <script src="./src/main.js"></script>
+        <script>
+            window.onload = function() {
+                main.init();
+            };
+        </script>
+    </head>
+    <body>
+        <form class="form">
+            <input type="radio" id="student" class="student-type" name="student-type">
+            <label for="student">在校生</label>
+            <input type="radio" id="work" class="student-type" name="student-type">
+            <label for="work">非在校生</label>
+            <div class="student-info">
+                <p id="school">学校</p>
+                <select class="city" name="city">
+                </select>
+                <select class="schools" name="schools">
+                </select>
+            </div>
+            <div class="work-info">
+                <p id="workplace">就业单位</p>
+                <input type="text">
+            </div>
+        </form>
+    </body>
+</html>
