@@ -35,6 +35,8 @@
         if(side === 'left') {
             if(queues) {
                 alert("您已移除元素:" + queues.shift());
+            } else {
+                alert("队列里已经没有元素了！");
             }
             if(queue.hasChildNodes()) {
                 let first_child = queue.firstChild;
@@ -44,6 +46,8 @@
         if(side === 'right') {
             if(queues) {
                 alert("您已移除元素:" + queues.pop());
+            } else {
+                alert("队列里已经没有元素了！");
             }
             if(queue.hasChildNodes()) {
                 let last_child = queue.lastChild;
