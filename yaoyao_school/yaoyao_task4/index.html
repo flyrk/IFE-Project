@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>移动小方块(一)</title>
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="grids">
+
+            </div>
+            <div class="footer">
+                <input type="text" id="option">
+                <button type="button" id="commit">执行</button>
+            </div>
+        </div>
+        <script src="./src/view.js"></script>
+        <script src="./src/option.js"></script>
+        <script src="./src/basic.js"></script>
+        <script>
+            window.onload = function() {
+                grid.init();
+            };
+        </script>
+    </body>
+</html>
