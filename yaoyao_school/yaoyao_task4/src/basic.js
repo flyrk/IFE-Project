@@ -1,6 +1,6 @@
 var grid = (function() {
     var grids = document.getElementsByClassName('grids')[0],
-          cell = [];
+          cell = [];    // 记录方格信息
     var init = function() {
         for(var i = 0; i < 10; i++) {
             cell.push([]);
@@ -18,7 +18,7 @@ var grid = (function() {
         // 1代表向上;2代表向右;3代表向下;4代表向左
         cell[startX][startY] = opt.getDirection();
         view.drawBox(cell[startX][startY], startX, startY);
-        opt.listenOpt(cell);
+        opt.listenOpt(cell);        // 开始监听方块移动指令
     }
     return {
         init: init
